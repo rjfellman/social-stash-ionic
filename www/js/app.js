@@ -46,6 +46,16 @@ angular.module('starter', ['ionic', 'starter.controllers'])
           controller: 'StashesCtrl'
         }
       }
+    })
+
+    .state('app.single', {
+      url: "/stash/:stashId",
+      views: {
+        'menuContent' :{
+          templateUrl: "templates/status.html",
+          controller: 'StashesCtrl'
+        }
+      }
     });
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/app/stash');

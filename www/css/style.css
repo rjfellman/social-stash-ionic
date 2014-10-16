@@ -1,1 +1,4 @@
-/* Empty. Add your own CSS if you like */
+.subtitle {
+    font-style: italic;
+    font-size: 12px;
+}
