@@ -46,8 +46,6 @@ angular.module('starter', ['ionic', 'starter.controllers'])
           controller: 'StashesCtrl'
         }
       }
-    })
-
     });
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/app/stash');
