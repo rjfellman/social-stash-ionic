@@ -1,0 +1,9 @@
+<ion-view title="My Stash">
+  <ion-content class="has-header">
+    <ion-list>
+      <ion-item ng-repeat="stash in stashes" href="#/app/stash/{{stashes.id}}">
+        {{stash.title}}
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>
