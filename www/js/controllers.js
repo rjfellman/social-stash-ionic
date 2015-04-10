@@ -15,6 +15,7 @@ angular.module('starter.controllers', [])
       	id: 2
   	}
   ];
+
 })
 
 .controller('AppCtrl', function($scope, $ionicModal, $timeout) {
