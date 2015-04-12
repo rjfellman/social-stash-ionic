@@ -55,6 +55,10 @@ angular.module('starter.controllers', [])
   $scope.deletePost = function(index) {
     var stashes = JSON.parse(window.localStorage['stashes'] || '[]');
     stashes.splice(1,1);
+
+    for (var i = 0; i < stashes.length; i++) {
+      stashes[i].id = i;
+    }
     window.localStorage['stashes'] = JSON.stringify(stashes);
   };
 
