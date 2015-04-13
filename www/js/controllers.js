@@ -1,4 +1,4 @@
-angular.module('starter.controllers', [])
+angular.module('starter.controllers', ['ngCordova'])
 
 .controller('StashesCtrl', function($scope) {
   $scope.selectedPost = document.URL,
@@ -12,10 +12,11 @@ angular.module('starter.controllers', [])
   $scope.stashes = JSON.parse(window.localStorage['stashes'] || '{}');
 })
 
-.controller('AppCtrl', function($scope, $ionicModal, $timeout, $ionicPopup) {
+.controller('AppCtrl', function($scope, $ionicModal, $timeout, $ionicPopup, $ionicActionSheet, $cordovaSocialSharing, $ionicPlatform) {
   // Form data for the create modal
   $scope.newData = {};
   $scope.activeIndex = 0;
+  $scope.activePost = {};
 
   // Create the create modal that we will use later
   $ionicModal.fromTemplateUrl('templates/create.html', {
@@ -48,8 +49,73 @@ angular.module('starter.controllers', [])
     $scope.closeCreate();
   };
 
-  $scope.selectPost = function(index) {
+  $scope.share = function() {
+    // Show the action sheet
+   var hideSheet = $ionicActionSheet.show({
+     buttons: [
+       { text: '<b>Facebook<b>' },
+       { text: '<b>Twitter<b>' },
+       { text: '<b>Instagram<b>' },
+     ],
+     //destructiveText: 'Delete',
+     titleText: '<b>Share Post<b>',
+     cancelText: 'Cancel',
+     cancel: function() {
+          // add cancel code..
+          hideSheet();
+        },
+     buttonClicked: function(index) {
+       switch(index){
+        case 0:
+          $scope.shareFacebook();
+          break;
+        case 1:
+          $scope.shareTwitter();
+          break;
+        case 2:
+          $scope.shareInstagram();
+          break;
+       }
+       hideSheet();
+     }
+   });
+  }
+
+   $scope.shareFacebook = function(index) {
+    console.log("facebooking...");
+    //$ionicPlatform.ready(function() {
+      $cordovaSocialSharing
+        .shareViaFacebook($scope.activePost.post, null, $scope.activePost.url)
+        .then(function(result) {
+          console.log("success! " + result);
+
+        }, function(err) {
+          console.log("failed :( " + err);
+        });
+    //});
+   };
+
+   $scope.shareTwitter = function(index) {
+    console.log("tweeting...");
+    //$ionicPlatform.ready(function() {
+      $cordovaSocialSharing
+        .shareViaTwitter($scope.activePost.post, null, $scope.activePost.url)
+        .then(function(result) {
+          console.log("success! " + result);
+
+        }, function(err) {
+          console.log("failed :( " + err);
+        });
+    //});
+   };
+
+   $scope.shareInstagram = function(index) {
+
+   };
+
+  $scope.selectPost = function(post, index) {
     $scope.activeIndex = index;
+    $scope.activePost = post;
   };
 
   $scope.deletePost = function(index) {

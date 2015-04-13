@@ -4,10 +4,10 @@
   </ion-nav-buttons>
   <ion-content class="has-header">
     <ion-list>
-      <ion-item ng-repeat="stash in stashes" href="#/app/stash/{{stash.id}}" ng-click="selectPost(stash.id)" on-swipe-left="showAlert(stash.id)">
+      <ion-item ng-repeat="stash in stashes" href="#/app/stash/{{stash.id}}" ng-click="selectPost(stash, stash.id)" on-swipe-left="showAlert(stash.id)">
         {{stash.title}}<br>
         <div class="subtitle">
-        {{stash.date}} {{stash.post}}
+        {{stash.url}} {{stash.post}}
         </div>
       </ion-item>
     </ion-list>

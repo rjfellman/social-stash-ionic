@@ -1,8 +1,11 @@
-<ion-view title="Status Title">
+<ion-view title="{{stashes[activeIndex].title}}">
+  <ion-nav-buttons side="right">
+    <button menu-toggle="right" class="button button-icon icon ion-share" ng-click="share()"></button>
+  </ion-nav-buttons>
   <ion-content class="has-header">
     <p>
     {{stashes[activeIndex].title}}<br>
-    {{stashes[activeIndex].date}}<br><br>
+    {{stashes[activeIndex].url}}<br><br>
     {{stashes[activeIndex].post}}
     </p>
   </ion-content>
